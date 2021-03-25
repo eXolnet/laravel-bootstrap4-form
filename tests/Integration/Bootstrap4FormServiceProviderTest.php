@@ -14,7 +14,7 @@ use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Collection;
 use Mockery;
 
-class FormGroupBuilderTest extends TestCase
+class Bootstrap4FormServiceProviderTest extends TestCase
 {
     /**
      * @var FormBuilder
