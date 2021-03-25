@@ -2,6 +2,7 @@
 
 namespace Exolnet\LaravelBootstrap4Form;
 
+use Exolnet\HtmlList\HtmlList;
 use Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder;
 use Collective\Html\FormBuilder;
 use Illuminate\Support\ServiceProvider;
@@ -76,7 +77,7 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
 
     private function addHtmlListMacro(): void
     {
-        FormBuilder::macro(
+        HtmlList::macro(
             'bsSelect',
             /**
              * @param string $name
