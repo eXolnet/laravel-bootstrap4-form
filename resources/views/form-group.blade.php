@@ -14,7 +14,7 @@
             {{ $label }}
         @endif
 
-        @if (isset($name) && $errors->has(\Exolnet\LaravelBootstrap4Form\Support\Helper::stringArrayToDotNotation($name)))
+        @if (isset($name) && isset($errors) && $errors->has(\Exolnet\LaravelBootstrap4Form\Support\Helper::stringArrayToDotNotation($name)))
             <span class="invalid-feedback">
                 <strong>{{ $errors->first(\Exolnet\LaravelBootstrap4Form\Support\Helper::stringArrayToDotNotation($name)) }}</strong>
             </span>
