@@ -215,7 +215,7 @@ class FormGroupBuilder implements Htmlable
         $this->input = FormFacade::text(
             $this->name,
             $value,
-            $this->parseInputOptions($options, [])->merge(['is' => 'form-date-picker'])->all()
+            $this->parseInputOptions($options, [])->all()
         );
 
         return $this;
@@ -231,7 +231,7 @@ class FormGroupBuilder implements Htmlable
         $this->input = FormFacade::textarea(
             $this->name,
             $value,
-            $this->parseInputOptions($options, [])->merge(['is' => 'form-textarea'])->all()
+            $this->parseInputOptions($options, [])->all()
         );
 
         return $this;
@@ -291,7 +291,7 @@ class FormGroupBuilder implements Htmlable
             $this->name,
             $list,
             $selected,
-            $this->parseInputOptions($selectAttributes)->merge(['is' => 'form-select'])->all(),
+            $this->parseInputOptions($selectAttributes)->all(),
             $optionsAttributes,
             $optgroupsAttributes
         );
