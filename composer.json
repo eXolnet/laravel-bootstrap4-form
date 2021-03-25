@@ -19,7 +19,7 @@
         "php": "^7.3|^7.4",
         "exolnet/laravel-html-list": "^1.0",
         "illuminate/support": "^6.0|^7.0|^8.0",
-        "laravelcollective/html": "^6.0|^7.0|^8.0"
+        "laravelcollective/html": "^6.0"
     },
     "require-dev": {
         "mockery/mockery": "^1.3",
