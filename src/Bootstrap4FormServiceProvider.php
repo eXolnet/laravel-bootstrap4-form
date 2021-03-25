@@ -2,6 +2,7 @@
 
 namespace Exolnet\LaravelBootstrap4Form;
 
+use Collective\Html\FormFacade;
 use Exolnet\HtmlList\HtmlList;
 use Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder;
 use Collective\Html\FormBuilder;
@@ -27,7 +28,7 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
         $this->addHtmlListMacro();
     }
 
-    private function addFormMacro(): void
+    protected function addFormMacro(): void
     {
         FormBuilder::macro('value', function ($name, $value = null) {
             return $this->getValueAttribute($name, $value);
@@ -97,7 +98,7 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
                 array $optgroupsAttributes = []
             ): FormGroupBuilder {
                 if (is_null($selected) && in_array('multiple', $selectAttributes)) {
-                    $selected = FormBuilder::value($name) ?? [];
+                    $selected = FormFacade::value($name) ?? [];
                 }
 
                 $selectAttributes = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($selectAttributes);
