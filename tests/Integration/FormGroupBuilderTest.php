@@ -178,7 +178,9 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <textarea class="elementClass" name="elementName" cols="50" rows="10" id="elementName">textareaValue</textarea>
+                <textarea class="elementClass" name="elementName" cols="50" rows="10" id="elementName">
+                    textareaValue
+                </textarea>
             </div>
         </div>';
 
@@ -203,7 +205,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue" id="elementName">
+                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
+                    id="elementName">
                 </div>
             </div>';
 
@@ -228,7 +231,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" readonly="readonly" tabIndex="-1" name="elementName" type="text" value="textValue" id="elementName">
+                    <input class="form-control elementClass" readonly="readonly" tabIndex="-1"
+                    name="elementName" type="text" value="textValue" id="elementName">
                 </div>
             </div>';
 
@@ -253,7 +257,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="email" value="textValue" id="elementName">
+                    <input class="form-control elementClass" name="elementName" type="email" value="textValue"
+                    id="elementName">
                 </div>
             </div>';
 
