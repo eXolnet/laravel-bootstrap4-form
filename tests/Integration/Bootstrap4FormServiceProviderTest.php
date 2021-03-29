@@ -2,74 +2,17 @@
 
 namespace Exolnet\LaravelBootstrap4Form\Tests\Integration;
 
-use Collective\Html\FormBuilder;
-use Collective\Html\HtmlBuilder;
 use Exolnet\HtmlList\HtmlList;
 use Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder;
 use Exolnet\LaravelBootstrap4Form\Tests\Mocks\HtmlItemMock;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Http\Request;
-use Illuminate\Routing\RouteCollection;
-use Illuminate\Routing\UrlGenerator;
 use Illuminate\Support\Collection;
-use Mockery;
 
 class Bootstrap4FormServiceProviderTest extends TestCase
 {
     /**
-     * @var FormBuilder
+     * @return void
      */
-    protected $formBuilder;
-
-    /**
-     * Setup the test environment.
-     */
-    protected function setUp(): void
-    {
-        parent::setup();
-
-        $this->urlGenerator = new UrlGenerator(new RouteCollection(), Request::create('/foo', 'GET'));
-        $this->viewFactory = Mockery::mock(Factory::class);
-        $this->htmlBuilder = new HtmlBuilder($this->urlGenerator, $this->viewFactory);
-
-        // prepare request for test with some data
-        $request = Request::create('/foo', 'GET', [
-            "person" => [
-                "name" => "John",
-                "surname" => "Doe",
-            ],
-            "agree" => 1,
-            "checkbox_array" => [1, 2, 3],
-        ]);
-
-        $request = Request::createFromBase($request);
-
-        $this->formBuilder = new FormBuilder(
-            $this->htmlBuilder,
-            $this->urlGenerator,
-            $this->viewFactory,
-            'abc',
-            $request
-        );
-    }
-
-    /**
-     * Destroy the test environment.
-     */
-    protected function tearDown(): void
-    {
-        Mockery::close();
-
-        parent::tearDown();
-    }
-
-    protected function stripHtml($html)
-    {
-        return trim(preg_replace('/\s+/', '', $html));
-    }
-
-
-    public function testBsFormGroup()
+    public function testBsFormGroup(): void
     {
         $this->formBuilder->considerRequest();
         $formGroup = $this->formBuilder->bsFormGroup('formgroupName', 'formgroupLabel');
@@ -232,6 +175,32 @@ class Bootstrap4FormServiceProviderTest extends TestCase
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" readonly="readonly" tabIndex="-1"
+                    name="elementName" type="text" value="textValue" id="elementName">
+                </div>
+            </div>';
+
+        $expectedElement = $this->stripHtml($expectedElement);
+        $this->assertEquals($expectedElement, $html);
+    }
+
+    /**
+     * @return void
+     */
+    public function testBsTextWithRequired(): void
+    {
+        $this->formBuilder->considerRequest();
+        $element = $this->formBuilder->bsText(
+            'elementName',
+            'elementLabel',
+            'text Value',
+            ['class' => 'elementClass', 'required']
+        );
+        $html = $this->stripHtml($element->render());
+
+        $expectedElement = '<div class="form-group__required form-group">
+                <label for="elementName">elementLabel</label>
+                <div class="form-group__input">
+                    <input class="form-control elementClass" required="required"
                     name="elementName" type="text" value="textValue" id="elementName">
                 </div>
             </div>';

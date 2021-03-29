@@ -65,6 +65,11 @@ class FormGroupBuilder implements Htmlable
     protected $input;
 
     /**
+     * @var \Illuminate\Support\ViewErrorBag
+     */
+    protected $errors;
+
+    /**
      * @param string $name
      * @param \Illuminate\Contracts\Support\Htmlable|string|null $label
      * @param array $labelOptions
@@ -93,6 +98,8 @@ class FormGroupBuilder implements Htmlable
         if (! $errorBag = Session::get('errors')) {
             return false;
         }
+
+        $this->errors = $errorBag;
 
         if ($errorBag->has(Helper::stringArrayToDotNotation($this->name))) {
             return true;
@@ -311,6 +318,7 @@ class FormGroupBuilder implements Htmlable
             'labelLocation' => $this->labelLocation,
             'input' => $this->input,
             'tooltip' => $this->tooltip,
+            'errors' => $this->errors,
         ]);
     }
 
