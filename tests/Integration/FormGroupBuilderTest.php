@@ -30,7 +30,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element->toHtml());
 
-        $expectedElement = '<div class="form-group__has-error form-group">
+        $expectedElement = '<div class="form-group--label-before form-group__has-error form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
                 <input class="is-invalid form-control elementClass" name="elementName" type="text" value="textValue"
@@ -60,7 +60,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <span class="d-inline-block d-print-none" tabindex="-1" data-toggle="tooltip"
                 title="This is a tooltip for this input text">
@@ -91,7 +91,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-beside-only form-group">
                 <div class="form-group__input">
                     <input class="form-control elementClass" name="elementName" type="text" value="textValue"
                     id="elementName"><label for="elementName">elementLabel</label>
@@ -117,7 +117,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 raw label
                 <div class="form-group__input">
                     <input class="form-control elementClass" name="elementName" type="text" value="textValue"
@@ -144,7 +144,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     Raw input
@@ -172,7 +172,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div v-model="bbb">
+        $expectedElement = '<div class="form-group--label-before" v-model="bbb">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" name="elementName" type="text" value="textValue"
@@ -200,7 +200,7 @@ class FormGroupBuilderTest extends TestCase
 
         $html = $this->stripHtml($element);
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" name="elementName" type="text" value="textValue"

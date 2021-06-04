@@ -38,7 +38,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div  class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
                 <select class="form-control elementClass" id="elementName" name="elementName">
@@ -67,7 +67,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-beside form-group">
             <div class="form-group__input">
                 <input class="form-control elementClass" checked="checked" name="elementName" type="checkbox"
                     id="elementName">
@@ -93,7 +93,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
             <input class="elementClass" name="elementName" type="text" value="2021-01-01" id="elementName">
@@ -118,7 +118,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
                 <textarea class="elementClass" name="elementName" cols="50" rows="10" id="elementName">
@@ -145,7 +145,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" name="elementName" type="text" value="textValue"
@@ -171,7 +171,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" readonly="readonly" tabIndex="-1"
@@ -197,7 +197,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group__required form-group">
+        $expectedElement = '<div class="form-group--label-before form-group__required form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" required="required"
@@ -223,7 +223,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
                     <input class="form-control elementClass" name="elementName" type="email" value="textValue"
@@ -248,7 +248,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
                 <input class="form-control elementClass" name="elementName" type="password" value="" id="elementName">
@@ -273,7 +273,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         );
         $html = $this->stripHtml($element->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
                 <input class="form-control elementClass" name="elementName" type="number" value="110" id="elementName">
@@ -303,7 +303,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $html = $this->stripHtml($htmlList->bsSelect('select')->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <div class="form-group__input">
                     <select class="form-control" name="select">
                         <option value="" selected="selected">EmptyLabel</option>
@@ -340,7 +340,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $html = $this->stripHtml($htmlList->bsSelect('select', null, [9999, 8888], ['multiple'])->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <div class="form-group__input">
                     <select class="form-control" multiple="multiple" name="select">
                         <option value="">EmptyLabel</option>
@@ -377,7 +377,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $html = $this->stripHtml($htmlList->bsSelect('select', null, null, ['multiple'])->render());
 
-        $expectedElement = '<div class="form-group">
+        $expectedElement = '<div class="form-group--label-before form-group">
                 <div class="form-group__input">
                     <select class="form-control" multiple="multiple" name="select">
                         <option value="9999">Second element label</option>

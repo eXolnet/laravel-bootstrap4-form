@@ -311,6 +311,10 @@ class FormGroupBuilder implements Htmlable
      */
     public function view(): View
     {
+        if (isset($this->labelLocation)) {
+            $this->mergeAttributes(['class' => 'form-group--label-' . $this->labelLocation]);
+        }
+
         return view('laravelbootstrap4form::form-group', [
             'name' => $this->name,
             'attributes' => $this->attributes->all(),
