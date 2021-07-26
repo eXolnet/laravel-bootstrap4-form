@@ -280,6 +280,18 @@ class FormGroupBuilder implements Htmlable
     }
 
     /**
+     * @param string|null $value
+     * @param array $options
+     * @return $this
+     */
+    public function tel(?string $value = null, array $options = []): self
+    {
+        $this->input = FormFacade::tel($this->name, $value, $this->parseInputOptions($options)->all());
+
+        return $this;
+    }
+
+    /**
      * @param array $list
      * @param string|array|null $selected
      * @param array $selectAttributes

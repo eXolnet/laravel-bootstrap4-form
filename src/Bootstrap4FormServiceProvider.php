@@ -74,6 +74,8 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
         $this->addPasswordComponent();
 
         $this->addNumberComponent();
+
+        $this->addTelComponent();
     }
 
     private function addHtmlListMacro(): void
@@ -311,6 +313,30 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
                 return FormBuilder::bsFormGroup($name, $label)->number($value, $options);
+            }
+        );
+    }
+
+    private function addTelComponent(): void
+    {
+        FormBuilder::macro(
+            'bsTel',
+            /**
+             * @param string $name
+             * @param \Illuminate\Contracts\Support\Htmlable|string|null $label
+             * @param string|null $value
+             * @param array $options
+             * @return \Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder
+             */
+            function (
+                string $name,
+                $label = null,
+                ?string $value = null,
+                array $options = []
+            ): FormGroupBuilder {
+                $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
+
+                return FormBuilder::bsFormGroup($name, $label)->tel($value, $options);
             }
         );
     }

@@ -287,6 +287,31 @@ class Bootstrap4FormServiceProviderTest extends TestCase
     /**
      * @return void
      */
+    public function testBsTel(): void
+    {
+        $this->formBuilder->considerRequest();
+        $element = $this->formBuilder->bsTel(
+            'elementName',
+            'elementLabel',
+            110,
+            ['class' => 'elementClass']
+        );
+        $html = $this->stripHtml($element->render());
+
+        $expectedElement = '<div class="form-group--label-before form-group">
+            <label for="elementName">elementLabel</label>
+            <div class="form-group__input">
+                <input class="form-control elementClass" name="elementName" type="tel" value="110" id="elementName">
+            </div>
+        </div>';
+
+        $expectedElement = $this->stripHtml($expectedElement);
+        $this->assertEquals($expectedElement, $html);
+    }
+
+    /**
+     * @return void
+     */
     public function testHtmlListBsSelect(): void
     {
         $item = new HtmlItemMock();
