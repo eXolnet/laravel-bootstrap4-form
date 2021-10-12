@@ -17,7 +17,7 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->loadViewsFrom(__DIR__.'/../resources/views', 'laravelbootstrap4form');
+        $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravelbootstrap4form');
 
         $this->addFormMacro();
 
@@ -347,7 +347,8 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
      */
     public static function addTabIndexIfReadonly(array $attributes): array
     {
-        if ((in_array('readonly', $attributes) || array_key_exists('readonly', $attributes)) &&
+        if (
+            (in_array('readonly', $attributes) || array_key_exists('readonly', $attributes)) &&
             !array_key_exists('tabIndex', $attributes)
         ) {
             $attributes['tabIndex'] = -1;
