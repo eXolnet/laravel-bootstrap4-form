@@ -20,6 +20,11 @@ class FormGroupBuilder implements Htmlable
     protected const DEFAULT_INPUT_OPTIONS = ['class' => 'form-control'];
 
     /**
+     * @var array
+     */
+    protected const DEFAULT_LABEL_OPTIONS = ['class' => 'form-label'];
+
+    /**
      * @var string
      */
     public const LABEL_LOCATION_BEFORE = 'before';
@@ -85,7 +90,8 @@ class FormGroupBuilder implements Htmlable
         }
 
         if ($label) {
-            $this->label = FormFacade::label($name, $label, $labelOptions, $labelEscapeHtml);
+            $options = (new AttributeBag($labelOptions))->merge(static::DEFAULT_LABEL_OPTIONS)->all();
+            $this->label = FormFacade::label($name, $label, $options, $labelEscapeHtml);
         }
     }
 
