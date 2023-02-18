@@ -17,16 +17,16 @@
     ],
     "require": {
         "php": "^8.0",
-        "exolnet/laravel-html-list": "^1.0",
+        "exolnet/laravel-html-list": "^1.5",
         "illuminate/support": "^9.0|^10.0",
-        "laravelcollective/html": "^6.2.1"
+        "laravelcollective/html": "^6.3"
     },
     "require-dev": {
         "exolnet/phpcs-config": "^2.0",
-        "mockery/mockery": "^1.4",
+        "mockery/mockery": "^1.5.1",
         "orchestra/testbench": "^7.0|^8.0",
-        "phpunit/phpunit": "^9.3.3",
-        "squizlabs/php_codesniffer": "^3.6"
+        "phpunit/phpunit": "^9.5.11",
+        "squizlabs/php_codesniffer": "^3.7.1"
     },
     "autoload": {
         "psr-4": {
