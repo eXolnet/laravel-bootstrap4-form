@@ -1,4 +1,4 @@
-<div {!! Html::attributes($attributes ?? []) !!}>
+<div {!! \Exolnet\LaravelBootstrap4Form\Support\Helper::attributes($attributes ?? []) !!}>
     @if (!isset($labelLocation) || $labelLocation === \Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder::LABEL_LOCATION_BEFORE)
         {{ $label }}
     @endif
