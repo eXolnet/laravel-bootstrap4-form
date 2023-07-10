@@ -18,20 +18,11 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravelbootstrap4form');
 
-        $this->addFormMacro();
-
         $this->addFormGroup();
 
         $this->addFormComponents();
 
         $this->addHtmlListMacro();
-    }
-
-    protected function addFormMacro(): void
-    {
-        Html::macro('value', function ($name, $value = null) {
-            return $this->getValueAttribute($name, $value);
-        });
     }
 
     protected function addFormGroup(): void
