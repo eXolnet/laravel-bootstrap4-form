@@ -33,8 +33,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group__has-error form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <input class="is-invalid form-control elementClass" name="elementName" type="text" value="textValue"
-                id="elementName">
+                <input class="is-invalid form-control elementClass" type="text" name="elementName" id="elementName"
+                value="textValue">
                 <span class="invalid-feedback">
                     <strong>Problem with element Name</strong>
                 </span>
@@ -67,8 +67,8 @@ class FormGroupBuilderTest extends TestCase
                     @svg(\'info-circle\')
                 </span>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
-                    id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue">
                 </div>
             </div>';
 
@@ -93,8 +93,8 @@ class FormGroupBuilderTest extends TestCase
 
         $expectedElement = '<div class="form-group--label-beside-only form-group">
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
-                    id="elementName"><label for="elementName">elementLabel</label>
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue"><label for="elementName">elementLabel</label>
                 </div>
             </div>';
 
@@ -120,8 +120,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
                 raw label
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
-                    id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue">
                 </div>
             </div>';
 
@@ -175,8 +175,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before" v-model="bbb">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
-                    id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue">
                 </div>
             </div>';
 
@@ -203,8 +203,8 @@ class FormGroupBuilderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
-                    id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue">
                 </div>
             </div>';
 

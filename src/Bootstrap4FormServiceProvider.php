@@ -2,11 +2,10 @@
 
 namespace Exolnet\LaravelBootstrap4Form;
 
-use Collective\Html\FormFacade;
 use Exolnet\HtmlList\HtmlList;
 use Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder;
-use Collective\Html\FormBuilder;
 use Illuminate\Support\ServiceProvider;
+use Spatie\Html\Facades\Html;
 
 class Bootstrap4FormServiceProvider extends ServiceProvider
 {
@@ -30,14 +29,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
 
     protected function addFormMacro(): void
     {
-        FormBuilder::macro('value', function ($name, $value = null) {
+        Html::macro('value', function ($name, $value = null) {
             return $this->getValueAttribute($name, $value);
         });
     }
 
     protected function addFormGroup(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsFormGroup',
             /**
              * @param string $name
@@ -87,8 +86,6 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
              * @param \Illuminate\Contracts\Support\Htmlable|string|null $label
              * @param string|array|null $selected
              * @param array $selectAttributes
-             * @param array $optionsAttributes
-             * @param array $optgroupsAttributes
              * @return \Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder
              */
             function (
@@ -96,23 +93,19 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
                 $label = null,
                 $selected = null,
                 array $selectAttributes = [],
-                array $optionsAttributes = [],
-                array $optgroupsAttributes = []
             ): FormGroupBuilder {
                 if (is_null($selected) && in_array('multiple', $selectAttributes)) {
-                    $selected = FormFacade::value($name) ?? [];
+                    $selected = Html::value($name) ?? [];
                 }
 
                 $selectAttributes = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($selectAttributes);
 
-                return FormBuilder::bsSelect(
+                return Html::bsSelect(
                     $name,
                     $label,
                     $this->buildArray(),
                     $selected,
-                    $selectAttributes,
-                    $optionsAttributes,
-                    $optgroupsAttributes
+                    $selectAttributes
                 );
             }
         );
@@ -120,16 +113,13 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
 
     private function addSelectComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsSelect',
             /**
              * @param string $name
              * @param \Illuminate\Contracts\Support\Htmlable|string|null $label
              * @param array $list
              * @param string|array|null $selected
-             * @param array $selectAttributes
-             * @param array $optionsAttributes
-             * @param array $optgroupsAttributes
              * @return \Exolnet\LaravelBootstrap4Form\Support\FormGroupBuilder
              */
             function (
@@ -138,20 +128,17 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
                 array $list = [],
                 $selected = null,
                 array $selectAttributes = [],
-                array $optionsAttributes = [],
-                array $optgroupsAttributes = []
             ): FormGroupBuilder {
                 $selectAttributes = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($selectAttributes);
 
-                return FormBuilder::bsFormGroup($name, $label)
-                    ->select($list, $selected, $selectAttributes, $optionsAttributes, $optgroupsAttributes);
+                return Html::bsFormGroup($name, $label)->select($list, $selected, $selectAttributes);
             }
         );
     }
 
     private function addCheckboxComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsCheckbox',
             /**
              * @param string $name
@@ -170,14 +157,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->checkbox($value, $checked, $options);
+                return Html::bsFormGroup($name, $label)->checkbox($value, $checked, $options);
             }
         );
     }
 
     private function addDateComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsDate',
             /**
              * @param string $name
@@ -194,14 +181,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->date($value, $options);
+                return Html::bsFormGroup($name, $label)->date($value, $options);
             }
         );
     }
 
     private function addTextareaComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsTextarea',
             /**
              * @param string $name
@@ -218,14 +205,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->textarea($value, $options);
+                return Html::bsFormGroup($name, $label)->textarea($value, $options);
             }
         );
     }
 
     private function addTextComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsText',
             /**
              * @param string $name
@@ -242,14 +229,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->text($value, $options);
+                return Html::bsFormGroup($name, $label)->text($value, $options);
             }
         );
     }
 
     private function addEmailComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsEmail',
             /**
              * @param string $name
@@ -266,14 +253,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->email($value, $options);
+                return Html::bsFormGroup($name, $label)->email($value, $options);
             }
         );
     }
 
     private function addPasswordComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsPassword',
             /**
              * @param string $name
@@ -288,14 +275,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->password($options);
+                return Html::bsFormGroup($name, $label)->password($options);
             }
         );
     }
 
     private function addNumberComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsNumber',
             /**
              * @param string $name
@@ -312,14 +299,14 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->number($value, $options);
+                return Html::bsFormGroup($name, $label)->number($value, $options);
             }
         );
     }
 
     private function addTelComponent(): void
     {
-        FormBuilder::macro(
+        Html::macro(
             'bsTel',
             /**
              * @param string $name
@@ -336,7 +323,7 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
             ): FormGroupBuilder {
                 $options = Bootstrap4FormServiceProvider::addTabIndexIfReadonly($options);
 
-                return FormBuilder::bsFormGroup($name, $label)->tel($value, $options);
+                return Html::bsFormGroup($name, $label)->tel($value, $options);
             }
         );
     }

@@ -14,7 +14,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsFormGroup(): void
     {
-        $this->formBuilder->considerRequest();
         $formGroup = $this->formBuilder->bsFormGroup('formgroupName', 'formgroupLabel');
 
         $expextedFormGroup = new FormGroupBuilder('formgroupName', 'formgroupLabel');
@@ -27,21 +26,19 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsSelect(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsSelect(
             'elementName',
             'elementLabel',
             [1 => '1', 2 => '2'],
             2,
             ['class' => 'elementClass'],
-            ['class' => 'elementOptionsClass']
         );
         $html = $this->stripHtml($element->render());
 
         $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <select class="form-control elementClass" id="elementName" name="elementName">
+                <select class="form-control elementClass" name="elementName" id="elementName">
                     <option value="1">1</option>
                     <option value="2" selected="selected">2</option>
                 </select>
@@ -57,7 +54,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsCheckbox(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsCheckbox(
             'elementName',
             'elementLabel',
@@ -69,8 +65,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $expectedElement = '<div class="form-group--label-beside form-group">
             <div class="form-group__input">
-                <input class="form-control elementClass" checked="checked" name="elementName" type="checkbox"
-                    id="elementName">
+                <input class="form-control elementClass" type="checkbox" name="elementName"
+                    id="elementName" checked>
                 <label for="elementName">elementLabel</label>
             </div>
         </div>';
@@ -84,7 +80,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsDate(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsDate(
             'elementName',
             'elementLabel',
@@ -96,7 +91,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-            <input class="elementClass" name="elementName" type="text" value="2021-01-01" id="elementName">
+            <input class="elementClass" type="text" name="elementName" id="elementName" value="2021-01-01">
             </div>
         </div>';
 
@@ -109,7 +104,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsTextarea(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsTextarea(
             'elementName',
             'elementLabel',
@@ -121,7 +115,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <textarea class="elementClass" name="elementName" cols="50" rows="10" id="elementName">
+                <textarea class="elementClass" name="elementName" id="elementName">
                     textareaValue
                 </textarea>
             </div>
@@ -136,7 +130,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsText(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsText(
             'elementName',
             'elementLabel',
@@ -148,8 +141,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="text" value="textValue"
-                    id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue">
                 </div>
             </div>';
 
@@ -162,7 +155,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsTextWithReadonly(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsText(
             'elementName',
             'elementLabel',
@@ -174,8 +166,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" readonly="readonly" tabIndex="-1"
-                    name="elementName" type="text" value="textValue" id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue" readonly="readonly" tabIndex="-1">
                 </div>
             </div>';
 
@@ -188,7 +180,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsTextWithRequired(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsText(
             'elementName',
             'elementLabel',
@@ -200,8 +191,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group__required form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" required="required"
-                    name="elementName" type="text" value="textValue" id="elementName">
+                    <input class="form-control elementClass" type="text" name="elementName" id="elementName"
+                    value="textValue" required="required">
                 </div>
             </div>';
 
@@ -214,7 +205,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsEmail(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsEmail(
             'elementName',
             'elementLabel',
@@ -226,8 +216,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
                 <label for="elementName">elementLabel</label>
                 <div class="form-group__input">
-                    <input class="form-control elementClass" name="elementName" type="email" value="textValue"
-                    id="elementName">
+                    <input class="form-control elementClass" type="email" name="elementName" id="elementName"
+                    value="textValue">
                 </div>
             </div>';
 
@@ -240,7 +230,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsPassword(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsPassword(
             'elementName',
             'elementLabel',
@@ -251,7 +240,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <input class="form-control elementClass" name="elementName" type="password" value="" id="elementName">
+                <input class="form-control elementClass" type="password" name="elementName" id="elementName">
             </div>
         </div>';
 
@@ -264,7 +253,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsNumber(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsNumber(
             'elementName',
             'elementLabel',
@@ -276,7 +264,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <input class="form-control elementClass" name="elementName" type="number" value="110" id="elementName">
+                <input class="form-control elementClass" type="number" name="elementName" id="elementName" value="110">
             </div>
         </div>';
 
@@ -289,7 +277,6 @@ class Bootstrap4FormServiceProviderTest extends TestCase
      */
     public function testBsTel(): void
     {
-        $this->formBuilder->considerRequest();
         $element = $this->formBuilder->bsTel(
             'elementName',
             'elementLabel',
@@ -301,7 +288,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
         $expectedElement = '<div class="form-group--label-before form-group">
             <label for="elementName">elementLabel</label>
             <div class="form-group__input">
-                <input class="form-control elementClass" name="elementName" type="tel" value="110" id="elementName">
+                <input class="form-control elementClass" type="tel" name="elementName" id="elementName" value="110">
             </div>
         </div>';
 
@@ -330,8 +317,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $expectedElement = '<div class="form-group--label-before form-group">
                 <div class="form-group__input">
-                    <select class="form-control" name="select">
-                        <option value="" selected="selected">EmptyLabel</option>
+                    <select class="form-control" name="select" id="select">
+                        <option value>EmptyLabel</option>
                         <option value="9999">Secondel ement label</option>
                     </select>
                 </div>
@@ -367,8 +354,8 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $expectedElement = '<div class="form-group--label-before form-group">
                 <div class="form-group__input">
-                    <select class="form-control" multiple="multiple" name="select">
-                        <option value="">EmptyLabel</option>
+                    <select class="form-control" name="select[]" id="select" multiple>
+                        <option value>EmptyLabel</option>
                         <option value="9999" selected="selected">Second element label</option>
                         <option value="8888" selected="selected">Third element label</option>
                     </select>
@@ -404,7 +391,7 @@ class Bootstrap4FormServiceProviderTest extends TestCase
 
         $expectedElement = '<div class="form-group--label-before form-group">
                 <div class="form-group__input">
-                    <select class="form-control" multiple="multiple" name="select">
+                    <select class="form-control" name="select[]" id="select" multiple>
                         <option value="9999">Second element label</option>
                         <option value="8888">Third element label</option>
                     </select>

@@ -2,11 +2,6 @@
 
 namespace Exolnet\LaravelBootstrap4Form\Tests\Integration;
 
-use Collective\Html\FormBuilder;
-use Collective\Html\FormFacade;
-use Collective\Html\HtmlBuilder;
-use Collective\Html\HtmlFacade;
-use Collective\Html\HtmlServiceProvider;
 use Exolnet\HtmlList\HtmlListServiceProvider;
 use Exolnet\LaravelBootstrap4Form\Bootstrap4FormServiceProvider;
 use Illuminate\Contracts\View\Factory;
@@ -15,11 +10,14 @@ use Illuminate\Routing\RouteCollection;
 use Illuminate\Routing\UrlGenerator;
 use Mockery;
 use Orchestra\Testbench\TestCase as Orchestra;
+use Spatie\Html\Facades\Html;
+use Spatie\Html\Html as HtmlBuilder;
+use Spatie\Html\HtmlServiceProvider;
 
 abstract class TestCase extends Orchestra
 {
     /**
-     * @var FormBuilder
+     * @var HtmlBuilder
      */
     protected $formBuilder;
 
@@ -32,7 +30,6 @@ abstract class TestCase extends Orchestra
 
         $this->urlGenerator = new UrlGenerator(new RouteCollection(), Request::create('/foo', 'GET'));
         $this->viewFactory = Mockery::mock(Factory::class);
-        $this->htmlBuilder = new HtmlBuilder($this->urlGenerator, $this->viewFactory);
 
         // prepare request for test with some data
         $request = Request::create('/foo', 'GET', [
@@ -46,13 +43,7 @@ abstract class TestCase extends Orchestra
 
         $request = Request::createFromBase($request);
 
-        $this->formBuilder = new FormBuilder(
-            $this->htmlBuilder,
-            $this->urlGenerator,
-            $this->viewFactory,
-            'abc',
-            $request
-        );
+        $this->formBuilder = new HtmlBuilder($request);
     }
 
     /**
@@ -87,8 +78,7 @@ abstract class TestCase extends Orchestra
     protected function getPackageAliases($app)
     {
         return [
-            'form' => FormFacade::class,
-            'Html' => HtmlFacade::class,
+            'Html' => Html::class,
         ];
     }
 }

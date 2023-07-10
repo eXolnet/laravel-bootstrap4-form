@@ -17,9 +17,8 @@
     ],
     "require": {
         "php": "^8.0",
-        "exolnet/laravel-html-list": "^1.5",
-        "illuminate/support": "^9.0|^10.0",
-        "laravelcollective/html": "^6.3"
+        "exolnet/laravel-html-list": "^2.0.0",
+        "illuminate/support": "^9.0|^10.0"
     },
     "require-dev": {
         "exolnet/phpcs-config": "^2.0",

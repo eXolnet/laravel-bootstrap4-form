@@ -2,10 +2,10 @@
 
 namespace Exolnet\LaravelBootstrap4Form\Support;
 
-use Collective\Html\FormFacade;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Session;
+use Spatie\Html\Facades\Html;
 
 class FormGroupBuilder implements Htmlable
 {
@@ -85,7 +85,7 @@ class FormGroupBuilder implements Htmlable
         }
 
         if ($label) {
-            $this->label = FormFacade::label($name, $label, $labelOptions, $labelEscapeHtml);
+            $this->label = Html::label($label, $name)->attributes($labelOptions);
         }
     }
 
@@ -181,7 +181,7 @@ class FormGroupBuilder implements Htmlable
      */
     public function text(string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::text($this->name, $value, $this->parseInputOptions($options)->all());
+        $this->input = Html::text($this->name, $value)->attributes($this->parseInputOptions($options)->all());
 
         return $this;
     }
@@ -193,7 +193,7 @@ class FormGroupBuilder implements Htmlable
      */
     public function textRaw(string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::text($this->name, $value, $this->parseInputOptions($options, [])->all());
+        $this->input = Html::text($this->name, $value)->attributes($this->parseInputOptions($options, [])->all());
 
         return $this;
     }
@@ -207,7 +207,8 @@ class FormGroupBuilder implements Htmlable
     public function checkbox(?string $value = '1', ?bool $checked = null, array $options = []): self
     {
         $this->labelLocation = self::LABEL_LOCATION_BESIDE;
-        $this->input = FormFacade::checkbox($this->name, $value, $checked, $this->parseInputOptions($options)->all());
+        $this->input = Html::checkbox($this->name, $checked, $value)
+            ->attributes($this->parseInputOptions($options)->all());
 
         return $this;
     }
@@ -219,11 +220,10 @@ class FormGroupBuilder implements Htmlable
      */
     public function date(?string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::text(
+        $this->input = Html::text(
             $this->name,
             $value,
-            $this->parseInputOptions($options, [])->all()
-        );
+        )->attributes($this->parseInputOptions($options, [])->all());
 
         return $this;
     }
@@ -235,11 +235,10 @@ class FormGroupBuilder implements Htmlable
      */
     public function textarea(?string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::textarea(
+        $this->input = Html::textarea(
             $this->name,
             $value,
-            $this->parseInputOptions($options, [])->all()
-        );
+        )->attributes($this->parseInputOptions($options, [])->all());
 
         return $this;
     }
@@ -251,7 +250,7 @@ class FormGroupBuilder implements Htmlable
      */
     public function email(?string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::email($this->name, $value, $this->parseInputOptions($options)->all());
+        $this->input = Html::email($this->name, $value)->attributes($this->parseInputOptions($options)->all());
 
         return $this;
     }
@@ -262,7 +261,7 @@ class FormGroupBuilder implements Htmlable
      */
     public function password(array $options = []): self
     {
-        $this->input = FormFacade::password($this->name, $this->parseInputOptions($options)->all());
+        $this->input = Html::password($this->name)->attributes($this->parseInputOptions($options)->all());
 
         return $this;
     }
@@ -274,7 +273,7 @@ class FormGroupBuilder implements Htmlable
      */
     public function number(?string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::number($this->name, $value, $this->parseInputOptions($options)->all());
+        $this->input = Html::number($this->name, $value)->attributes($this->parseInputOptions($options)->all());
 
         return $this;
     }
@@ -286,7 +285,8 @@ class FormGroupBuilder implements Htmlable
      */
     public function tel(?string $value = null, array $options = []): self
     {
-        $this->input = FormFacade::tel($this->name, $value, $this->parseInputOptions($options)->all());
+        $this->input = Html::text($this->name, $value)->type('tel')
+            ->attributes($this->parseInputOptions($options)->all());
 
         return $this;
     }
@@ -295,25 +295,22 @@ class FormGroupBuilder implements Htmlable
      * @param array $list
      * @param string|array|null $selected
      * @param array $selectAttributes
-     * @param array $optionsAttributes
-     * @param array $optgroupsAttributes
      * @return $this
      */
     public function select(
         array $list = [],
         $selected = null,
         array $selectAttributes = [],
-        array $optionsAttributes = [],
-        array $optgroupsAttributes = []
     ) {
-        $this->input = FormFacade::select(
+        $this->input = Html::select(
             $this->name,
             $list,
             $selected,
-            $this->parseInputOptions($selectAttributes)->all(),
-            $optionsAttributes,
-            $optgroupsAttributes
-        );
+        )->attributes($this->parseInputOptions($selectAttributes)->all());
+
+        if (in_array('multiple', $selectAttributes)) {
+            $this->input = $this->input->multiple();
+        }
 
         return $this;
     }
