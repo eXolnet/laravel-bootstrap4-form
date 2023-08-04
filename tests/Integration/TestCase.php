@@ -40,10 +40,9 @@ abstract class TestCase extends Orchestra
             "agree" => 1,
             "checkbox_array" => [1, 2, 3],
         ]);
+        $this->app->instance('request', $request);
 
-        $request = Request::createFromBase($request);
-
-        $this->formBuilder = new HtmlBuilder($request);
+        $this->formBuilder = $this->app->make(HtmlBuilder::class);
     }
 
     /**

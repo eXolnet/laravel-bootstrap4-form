@@ -18,11 +18,13 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
     {
         $this->loadViewsFrom(__DIR__ . '/../resources/views', 'laravelbootstrap4form');
 
-        $this->addFormGroup();
+        Html::resolved(function () {
+            $this->addFormGroup();
 
-        $this->addFormComponents();
+            $this->addFormComponents();
 
-        $this->addHtmlListMacro();
+            $this->addHtmlListMacro();
+        });
     }
 
     protected function addFormGroup(): void
