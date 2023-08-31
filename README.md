@@ -50,6 +50,7 @@ If you discover any security related issues, please email security@exolnet.com i
 ## Credits
 
 - [Simon Gaudreau](https://github.com/Gandhi11)
+- [Patricia Gagnon-Renaud](https://github.com/pgrenaud)
 - [All Contributors](../../contributors)
 
 ## License
