@@ -308,7 +308,10 @@ class FormGroupBuilder implements Htmlable
             $selected,
         )->attributes($this->parseInputOptions($selectAttributes)->all());
 
-        if (in_array('multiple', $selectAttributes)) {
+        if (
+            in_array('multiple', array_values($selectAttributes), true) ||
+            array_key_exists('multiple', $selectAttributes)
+        ) {
             $this->input = $this->input->multiple();
         }
 

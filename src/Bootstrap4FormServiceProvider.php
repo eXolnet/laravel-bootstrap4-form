@@ -87,7 +87,13 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
                 $selected = null,
                 array $selectAttributes = [],
             ): FormGroupBuilder {
-                if (is_null($selected) && in_array('multiple', $selectAttributes)) {
+                if (
+                    is_null($selected) &&
+                    (
+                        in_array('multiple', array_values($selectAttributes), true) ||
+                        array_key_exists('multiple', $selectAttributes)
+                    )
+                ) {
                     $selected = Html::value($name) ?? [];
                 }
 
@@ -328,7 +334,7 @@ class Bootstrap4FormServiceProvider extends ServiceProvider
     public static function addTabIndexIfReadonly(array $attributes): array
     {
         if (
-            (in_array('readonly', $attributes) || array_key_exists('readonly', $attributes)) &&
+            (in_array('readonly', $attributes, true) || array_key_exists('readonly', $attributes)) &&
             !array_key_exists('tabIndex', $attributes)
         ) {
             $attributes['tabIndex'] = -1;
