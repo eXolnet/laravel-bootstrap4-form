@@ -16,7 +16,7 @@
         }
     ],
     "require": {
-        "php": "^8.0",
+        "php": "^8.1",
         "exolnet/laravel-html-list": "^2.0.0",
         "illuminate/support": "^9.0|^10.0"
     },
