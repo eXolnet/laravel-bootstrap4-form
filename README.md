@@ -2,7 +2,7 @@
 
 [![Latest Stable Version](https://poser.pugx.org/eXolnet/laravel-bootstrap4-form/v/stable?format=flat-square)](https://packagist.org/packages/eXolnet/laravel-bootstrap4-form)
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg?style=flat-square)](LICENSE)
-[![Build Status](https://img.shields.io/travis/eXolnet/laravel-bootstrap4-form/master.svg?style=flat-square)](https://travis-ci.org/eXolnet/laravel-bootstrap4-form)
+[![Build Status](https://img.shields.io/travis/eXolnet/laravel-bootstrap4-form/main.svg?style=flat-square)](https://travis-ci.org/eXolnet/laravel-bootstrap4-form)
 [![Total Downloads](https://img.shields.io/packagist/dt/eXolnet/laravel-bootstrap4-form.svg?style=flat-square)](https://packagist.org/packages/eXolnet/laravel-bootstrap4-form)
 
 Package use to extend laravelcollective/html and help building Boostrap4 form
